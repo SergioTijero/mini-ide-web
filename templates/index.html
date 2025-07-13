@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mini-IDE Léxico/Sintáctico - Windows 95 Style</title>
+  <!-- CSS de CodeMirror desde CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='win95.css') }}">
+</head>
+<body>
+  <div class="desktop">
+    <!-- Barra de título estilo Windows 95 -->
+    <div class="title-bar">
+      <div class="title-bar-text">Mini-IDE Léxico/Sintáctico v1.0</div>
+      <div class="title-bar-controls">
+        <button class="title-bar-control" disabled>—</button>
+        <button class="title-bar-control" disabled>🗖</button>
+        <button class="title-bar-control" disabled>✕</button>
+      </div>
+    </div>
+
+    <!-- Barra de menú -->
+    <div class="menu-bar">
+      <button class="menu-item">Archivo</button>
+      <button class="menu-item">Editar</button>
+      <button class="menu-item">Ver</button>
+      <button class="menu-item">Ayuda</button>
+    </div>
+
+    <!-- Área principal -->
+    <div class="main-content">
+      <!-- Panel del editor -->
+      <div class="window">
+        <div class="window-header">
+          <span class="window-title">📝 Editor de Código</span>
+        </div>
+        <div class="window-body">
+          <textarea id="editor">// Escribe tu codigo aqui
+3 + 4 * (2 - 1)</textarea>
+          <div class="button-group">
+            <button id="btnLex" class="win95-button">🔍 Analizar Léxico</button>
+            <button id="btnParse" class="win95-button">🌳 Analizar Sintáctico</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel de tokens -->
+      <div class="window">
+        <div class="window-header">
+          <span class="window-title">🏷️ Tokens</span>
+        </div>
+        <div class="window-body">
+          <div class="table-container">
+            <table id="tblTokens" class="win95-table">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Valor</th>
+                  <th>Línea</th>
+                  <th>Posición</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel del AST -->
+      <div class="window">
+        <div class="window-header">
+          <span class="window-title">🌲 Árbol Sintáctico (AST)</span>
+        </div>
+        <div class="window-body">
+          <pre id="astView" class="ast-viewer"></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de estado -->
+    <div class="status-bar">
+      <div class="status-item">Listo</div>
+      <div class="status-item">Línea: 1</div>
+      <div class="status-item">Col: 1</div>
+    </div>
+  </div>
+
+  <!-- JS de CodeMirror desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+  <!-- Script principal -->
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
